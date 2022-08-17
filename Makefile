@@ -14,6 +14,7 @@ BLUE	=\033[1;34m
 LILA 	=\033[0;35m
 GREEN	=\033[2;32m
 YELLOW	=\033[1;33m
+END	=\033[1;37m
 
 TARGET_SRC = /home/
 APP_NAME = stockholm:v1
@@ -48,12 +49,12 @@ endef
 export HEADER
 
 list:
-	@echo "${BLUE}"
-	docker ps -a
-	@echo "${GREEN}"
-	docker ps
-	@echo "${YELLOW}"
-	docker images
+	@echo "${BLUE}> All running containers: \t--------------------------------${END}"
+	@docker ps -a
+	@echo "${LILA}> Existing docker images: \t--------------------------------${END}"
+	@docker images 
+	@echo "${LILA}> Existing containers: \t\t--------------------------------${END}"
+	@docker ps
 
 build:
 	docker build -f ${DOCKER_PATH} -t ${APP_NAME} .
